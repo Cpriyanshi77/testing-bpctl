@@ -1,0 +1,39 @@
+---   
+version: api/v1
+kind: BPGitEventListener
+metadata:
+ name: manifest-git-pr-listener
+spec:
+  git_repo: manifest-git-repo
+  branch: master
+  is_pr_decorate: true
+  action_on_events:
+  - events:
+    - Push
+    actions:
+    - name: BUILD_AND_DEPLOY
+      service: db
+      project_env: dev-default
+      project_job_template: integrations-testing-template
+      path: .
+
+---
+version: api/v1
+kind: BPGitEventListener
+metadata:
+  name: spring3hibernate-application-listener
+spec:
+  git_repo: manifest-git-repo
+  branch: master
+  is_pr_decorate: true
+  action_on_events:
+  - events:
+    - Push
+    actions:
+    - action: PIPELINE_TRIGGER
+      project: EmployeeManagement
+      pipeline: spring3hibernate-build-pipeline
+      path: "."
+      payload_conditions: []
+      headers_conditions: []
+

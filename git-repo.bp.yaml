@@ -1,0 +1,9 @@
+---
+version: api/v1
+kind: BPGitRepo
+metadata:
+  name: ot-micro-salary
+spec:
+   git_provider: github
+   url: https://github.com/Cpriyanshi77/OT-Microservices.git
+#   credential: credential-name

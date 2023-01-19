@@ -1,0 +1,57 @@
+---
+version: api/v1
+kind: BPApplicationServiceEnvJobTemplate
+metadata:
+    name: baseinfra-dev-eks
+    application_env: dev
+    service: baseinfra
+spec:
+    job_code: EKS
+    job_step_environment_variables:
+    - order: 0
+      step_code: CLONING_REPOSITORY
+      environment_variables:
+      - value: s3ha
+        integration: GIT_REPO
+        is_trigger_time_modify: false
+      - key: GIT_BRANCH
+        value: surabhi
+        is_trigger_time_modify: true
+    - order: 1
+      step_code: EKS
+      environment_variables:
+      - key: WORKSPACE
+        value: "/bp/workspace"
+        input_type: text
+        is_required: true
+        default_value: "/bp/workspace"
+        does_default_active: Y
+        is_trigger_time_modify: false
+      - key: TF_CODE_LOCATION
+        value: terraform/eks
+        input_type: text
+        is_required: true
+        default_value: terraform/eks
+        does_default_active: Y
+        is_trigger_time_modify: true
+      - key: AWS_ACCESS_KEY_ID
+        value: AKIAVYILXRUMFGEKILXA
+        input_type: text
+        is_required: true
+        does_default_active: N
+        is_trigger_time_modify: true
+      - key: AWS_SECRET_ACCESS_KEY
+        value: iTZTQAIe7n+fU/i9GUXTQ6QLjxP9KLIzA2sBEiAZ
+        input_type: text
+        is_required: true
+        does_default_active: N
+        is_trigger_time_modify: true
+      - key: INSTRUCTION
+        value: apply
+        input_type: select
+        is_required: true
+        default_value: plan
+        does_default_active: Y
+        is_trigger_time_modify: true
+        select_dropdown_options: plan,apply,destroy
+

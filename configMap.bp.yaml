@@ -1,0 +1,158 @@
+---
+version: api/v1
+kind: BPConfigmap
+metadata:
+ name: configmap-env
+spec:
+    env_namespace_configmap_key_value:
+    - key: ELASTIC_PASSWORD
+      value: elastic
+    application_env_namespace:
+        application_env:
+            project: poc-app
+            environment_master: dev
+            name: dev
+        namespace:
+            cluster: new-saas-cluster
+            name: poc-app
+
+---
+version: api/v1
+kind: BPConfigmap
+metadata:
+ name: configmap-value-via-file
+spec:
+    env_namespace_configmap_key_value:
+    - key: rere
+      manifest_meta_data:
+        strategy: UPLOADED_MANIFEST
+        manifest_file_paths:
+        - event_name: files
+          name: configmap.yaml
+          content: YXBpVmVyc2lvbjogdjEKa2luZDogQ29uZmlnTWFwCm1ldGFkYXRhOgogIG5hbWU6IGNvbmZpZ3ZpYWdpdDEKICBuYW1lc3BhY2U6IHJlcmUKZGF0YToKICAjIHByb3BlcnR5LWxpa2Uga2V5czsgZWFjaCBrZXkgbWFwcyB0byBhIHNpbXBsZSB2YWx1ZQogIE1ZU1FMX1VTRVJOQU1FOiAicm9vdCIKICBNWVNRTF9QQVNTV09SRDogInBhc3N3b3JkIgogIE1ZU1FMX0hPU1Q6ICJlbXBtcy1kYiIKICBNWVNRTF9EQVRBQkFTRTogImF0dGVuZGFuY2VkYiIKICBTTEVFUF9JTlRFUlZBTDogIjMwIgoK
+    application_env_namespace:
+        application_env:
+            project: poc-app
+            environment_master: dev
+            name: dev
+        namespace:
+            cluster: new-saas-cluster
+            name: poc-app
+
+---
+version: api/v1
+kind: BPConfigmap
+metadata:
+ name: configmap-value-via-git
+spec:
+    env_namespace_configmap_key_value:
+    - key: ELASTIC_PASSWORD
+      value:
+      manifest_meta_data:
+        strategy: GIT_MANIFEST
+        manifest_file_paths:
+        - "fluent-bit-configmap.yaml"
+        manifest_git_repo: bpctl-testing
+        manifest_git_repo_branch: main
+    application_env_namespace:
+        application_env:
+            project: poc-app
+            environment_master: dev
+            name: dev
+        namespace:
+            cluster: new-saas-cluster
+            name: poc-app
+
+---
+version: api/v1
+kind: BPConfigmap
+metadata:
+ name: configmap-via-file
+spec:
+    manifest_meta_data:
+      strategy: UPLOADED_MANIFEST
+      manifest_file_paths:
+      - event_name: files
+        name: configmap.yaml
+        content: YXBpVmVyc2lvbjogdjEKa2luZDogQ29uZmlnTWFwCm1ldGFkYXRhOgogIG5hbWU6IGNvbmZpZ3ZpYWdpdDEKICBuYW1lc3BhY2U6IHJlcmUKZGF0YToKICAjIHByb3BlcnR5LWxpa2Uga2V5czsgZWFjaCBrZXkgbWFwcyB0byBhIHNpbXBsZSB2YWx1ZQogIE1ZU1FMX1VTRVJOQU1FOiAicm9vdCIKICBNWVNRTF9QQVNTV09SRDogInBhc3N3b3JkIgogIE1ZU1FMX0hPU1Q6ICJlbXBtcy1kYiIKICBNWVNRTF9EQVRBQkFTRTogImF0dGVuZGFuY2VkYiIKICBTTEVFUF9JTlRFUlZBTDogIjMwIgoK
+    application_env_namespace:
+        application_env:
+            project: poc-app
+            environment_master: dev
+            name: dev
+        namespace:
+            cluster: new-saas-cluster
+            name: poc-app
+
+---
+version: api/v1
+kind: BPConfigmap
+metadata:
+ name: configmap-via-git
+spec:
+    manifest_meta_data:
+      strategy: GIT_MANIFEST
+      manifest_file_paths:
+      - "fluent-bit-configmap.yaml"
+      manifest_git_repo: bpctl-testing
+      manifest_git_repo_branch: main
+    application_env_namespace:
+        application_env:
+            project: poc-app
+            environment_master: dev
+            name: dev
+        namespace:
+            cluster: new-saas-cluster
+            name: poc-app
+
+---
+version: api/v1
+kind: BPConfigmap
+metadata:
+ name: rerew
+spec:
+    manifest_meta_data:
+      helm_git_repo: config
+      helm_git_repo_branch: main
+      helm_file_paths:
+      - "."
+      helm_release_name: "."
+      strategy: HELM_UPLOADED_VALUES_FILE
+      value_file_paths:
+      - event_name: files
+        name: configmap.yaml
+        content: YXBpVmVyc2lvbjogdjEKa2luZDogQ29uZmlnTWFwCm1ldGFkYXRhOgogIG5hbWU6IGNvbmZpZ3ZpYWdpdDEKICBuYW1lc3BhY2U6IHJlcmUKZGF0YToKICAjIHByb3BlcnR5LWxpa2Uga2V5czsgZWFjaCBrZXkgbWFwcyB0byBhIHNpbXBsZSB2YWx1ZQogIE1ZU1FMX1VTRVJOQU1FOiAicm9vdCIKICBNWVNRTF9QQVNTV09SRDogInBhc3N3b3JkIgogIE1ZU1FMX0hPU1Q6ICJlbXBtcy1kYiIKICBNWVNRTF9EQVRBQkFTRTogImF0dGVuZGFuY2VkYiIKICBTTEVFUF9JTlRFUlZBTDogIjMwIgoK
+    application_env_namespace:
+        application_env:
+            project: poc-app
+            environment_master: dev
+            name: dev
+        namespace:
+            cluster: new-saas-cluster
+            name: poc-app
+
+---
+version: api/v1
+kind: BPConfigmap
+metadata:
+ name: rerew
+spec:
+    manifest_meta_data:
+      helm_git_repo: config
+      helm_git_repo_branch: main
+      helm_file_paths:
+      - "."
+      helm_release_name: rr
+      strategy: HELM_GIT_VALUES_FILE
+      helm_value_repo_branch: main
+      helm_value_repo: config
+      value_file_paths:
+      - "."
+    application_env_namespace:
+        application_env:
+            project: poc-app
+            environment_master: dev
+            name: dev
+        namespace:
+            cluster: new-saas-cluster
+            name: poc-app

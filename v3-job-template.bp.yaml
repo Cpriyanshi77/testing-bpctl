@@ -1,0 +1,140 @@
+---
+version: api/v1
+kind: BPApplicationJobTemplate
+metadata:
+    name: cloud-infra
+spec:
+    name: cloud-infra
+    version: v3
+    application: demo-ms
+    default: false
+    description: A template to deploy cloud infra for our app
+    user: priyanshi.chauhan@opstree.com
+    job_template:
+      jobs:
+      - steps:
+        - step_code: CLONING_REPOSITORY
+          step_name: Clone Repository
+          order: 0
+          is_conditional_step: false
+        - step_code: NETWORK_SKELETON_STEP
+          step_name: Network Skeleton
+          is_conditional_step: false
+          environment_variables:
+          - key: WORKSPACE
+            value: "/bp/workspace"
+            isCustomVar: false
+          - key: TF_CODE_LOCATION
+            value: terraform/network_skeleton
+            isCustomVar: false
+          - key: INSTRUCTION
+            value: apply
+            isCustomVar: false
+          - key: AWS_ACCESS_KEY_ID
+            value: AKIAVYILXRUMFGEKILXA
+            isCustomVar: false
+          - key: AWS_SECRET_ACCESS_KEY
+            value: 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
+            isCustomVar: false
+        job_code: NETWORK_SKELETON
+        job_name: Network Skeleton
+        environment_variables:
+        - key: PROJECT_NAME
+          value: Buildpiper
+      - steps:
+        - step_code: CLONING_REPOSITORY
+          step_name: Clone Repository
+          order: 0
+          is_conditional_step: false
+          environment_variables:
+          - value: s3ha
+            integration: GIT_REPO
+        - step_code: AWS_ELASTICACHE
+          step_name: AWS Elasticache step
+          is_conditional_step: false
+          environment_variables:
+          - key: WORKSPACE
+            value: "/bp/workspace"
+            isCustomVar: false
+          - key: TF_CODE_LOCATION
+            value: terraform/elasticache/
+            isCustomVar: false
+          - key: INSTRUCTION
+            value: apply
+            isCustomVar: false
+          - key: AWS_ACCESS_KEY_ID
+            value: AKIAVYILXRUMFGEKILXA
+            isCustomVar: false
+          - key: AWS_SECRET_ACCESS_KEY
+            value: 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
+            isCustomVar: false
+        job_code: ELASTICACHE
+        job_name: Elasticache
+        environment_variables:
+        - key: PROJECT_NAME
+          value: Buildpiper
+      - steps:
+        - step_code: CLONING_REPOSITORY
+          step_name: Clone Repository
+          order: 0
+          is_conditional_step: false
+          environment_variables:
+          - value: s3ha
+            integration: GIT_REPO
+        - step_code: EKS
+          step_name: AWS EKS Step
+          is_conditional_step: false
+          environment_variables:
+          - key: WORKSPACE
+            value: "/bp/workspace"
+            isCustomVar: false
+          - key: TF_CODE_LOCATION
+            value: terraform/eks/
+            isCustomVar: false
+          - key: INSTRUCTION
+            value: apply
+            isCustomVar: false
+          - key: AWS_ACCESS_KEY_ID
+            value: AKIAVYILXRUMFGEKILXA
+            isCustomVar: false
+          - key: AWS_SECRET_ACCESS_KEY
+            value: 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
+            isCustomVar: false
+        job_code: EKS
+        job_name: EKS
+        environment_variables:
+        - key: PROJECT_NAME
+          value: Buildpiper
+      - steps:
+        - step_code: CLONING_REPOSITORY
+          step_name: Clone Repository
+          order: 0
+          is_conditional_step: false
+          environment_variables:
+          - value: s3ha
+            integration: GIT_REPO
+        - step_code: MSK
+          step_name: AWS MSK Step
+          is_conditional_step: false
+          environment_variables:
+          - key: WORKSPACE
+            value: "/bp/workspace"
+            isCustomVar: false
+          - key: TF_CODE_LOCATION
+            value: terraform/msk
+            isCustomVar: false
+          - key: INSTRUCTION
+            value: apply
+            isCustomVar: false
+          - key: AWS_ACCESS_KEY_ID
+            value: AKIAVYILXRUMFGEKILXA
+            isCustomVar: false
+          - key: AWS_SECRET_ACCESS_KEY
+            value: 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
+            isCustomVar: false
+        job_code: MSK
+        job_name: MSK
+        environment_variables:
+        - key: PROJECT_NAME
+          value: Buildpiper
+      default: true

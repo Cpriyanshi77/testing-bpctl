@@ -1,0 +1,30 @@
+---
+version: api/v1
+kind: BPServiceCI
+metadata:
+  name: emp-ui-ci
+  application: demo-ms
+  environment_master: dev
+  service: emp-ui
+spec:
+  git_repo: OT-Microservice
+  image_name: ot-micro-frontend-stage
+  dockerfile_path: Dockerfile:frontend
+  branch_name: master
+  language: JAVA
+  buildx_platform:
+  - architecture: linux/amd64
+  - architecture: linux/arm64
+  buildkit_enabled: true
+  sonar_project_key: testingrr-dev-rr
+  env_ci_build_variable:
+    - env_key: hi
+      env_value: hello
+  env_ci_hook:
+    - order: 1
+      action_type: PRE
+      command: ls
+    - order: 2
+      action_type: POST
+      command: ls
+  application_env: dev

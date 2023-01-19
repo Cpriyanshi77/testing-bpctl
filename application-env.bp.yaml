@@ -1,0 +1,15 @@
+---
+version: api/v1
+kind: BPApplicationEnv
+metadata:
+  name: dev
+spec:
+  environment_master: dev
+  application: demo-ms
+  cluster: ldc-cluster
+  namespace: buildpiper-dev
+  manual_build: true
+  manual_deploy: true
+  registry: ot-nexus-registry
+  # vault_access_token: 
+  # sonar_access_token: 
