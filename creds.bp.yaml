@@ -6,7 +6,18 @@ metadata:
 spec:
     credential: rr
     credential_type: ACCESS_TOKEN
-
+    read_user_groups:
+    - PROJECT_ADMIN
+    - DEV
+    - QA
+    - DEVOPS
+    - SUPER_ADMIN    
+    write_user_groups:
+    - PROJECT_ADMIN
+    - DEV
+    - QA
+    - DEVOPS
+    - SUPER_ADMIN
 ---
 version: api/v1
 kind: BPCredential
@@ -17,7 +28,18 @@ spec:
     key_value:
         aws_access_key: rr
         aws_secret_access_key: rr
-
+    read_user_groups:
+    - PROJECT_ADMIN
+    - DEV
+    - QA
+    - DEVOPS
+    - SUPER_ADMIN    
+    write_user_groups:
+    - PROJECT_ADMIN
+    - DEV
+    - QA
+    - DEVOPS
+    - SUPER_ADMIN
 ---
 version: api/v1
 kind: BPCredential
@@ -27,7 +49,19 @@ spec:
     username: rr
     password: rr
     credential_type: USERNAME_PASSWORD
-
+    read_user_groups:
+    - PROJECT_ADMIN
+    - DEV
+    - QA
+    - DEVOPS
+    - SUPER_ADMIN    
+    write_user_groups:
+    - PROJECT_ADMIN
+    - DEV
+    - QA
+    - DEVOPS
+    - SUPER_ADMIN
+    
 ---
 version: api/v1
 kind: BPCredential
@@ -37,7 +71,19 @@ spec:
     username: rere
     credential: rere
     credential_type: SSH_KEY
-
+    read_user_groups:
+    - PROJECT_ADMIN
+    - DEV
+    - QA
+    - DEVOPS
+    - SUPER_ADMIN    
+    write_user_groups:
+    - PROJECT_ADMIN
+    - DEV
+    - QA
+    - DEVOPS
+    - SUPER_ADMIN
+    
 ---
 version: api/v1
 kind: BPCredential
@@ -47,3 +93,15 @@ spec:
     username: rr
     password: rr
     credential_type: TOKEN
+    read_user_groups:
+    - PROJECT_ADMIN
+    - DEV
+    - QA
+    - DEVOPS
+    - SUPER_ADMIN    
+    write_user_groups:
+    - PROJECT_ADMIN
+    - DEV
+    - QA
+    - DEVOPS
+    - SUPER_ADMIN
