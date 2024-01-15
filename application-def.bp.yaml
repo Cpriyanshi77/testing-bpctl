@@ -2,14 +2,27 @@
 version: api/v1
 kind: BPApplication
 metadata:
-  name: demo-ms
+  name: bpctl-poc
 spec:
   description: application for ms
-  project_admin_email:
-    - priyanshi.chauhan@opstree.com
+  default_policy: 0
+  policy_template: Default-policy-template
   project_cluster:
-    - dedicated: false
-      cluster: ldc-cluster
+    - dedicated: true
+      cluster: ot-aws-cluster
       project_cluster_namespace:
         - buildpiper-dev
         - buildpiper-qa
+
+---
+version: api/v1
+kind: BPApplication
+metadata:
+  name: bpctl-poc
+spec:
+  description: application for ms
+  default_policy: 0
+  policy_template: Default-policy-template
+  project_cluster:
+    - dedicated: true
+      cluster: ot-aws-cluster
